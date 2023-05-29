@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Form, Name } from './ContactForm.styled';
 
 class ContactForm extends Component {
   state = {
@@ -12,17 +13,22 @@ class ContactForm extends Component {
     resetForm();
   };
 
-  // handleInputChange = e => {
-  //   const { name, value } = e.currentTarget;
-  //   this.setState({ [name]: value });
+  // handleSubmit = ({ values }) => {
+  //   this.props.onSubmit(values);
+  //   this.setState(values);
   // };
+
+  handleInputChange = e => {
+    const { name, value } = e.currentTarget;
+    this.setState({ [name]: value });
+  };
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit}>
         <label>
           Name
-          <input
+          <Name
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+((['
@@ -31,7 +37,9 @@ class ContactForm extends Component {
             letters, apostrophe, dash and spaces. For example Adrian, Jacob
             Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
-          ></input>
+            value={this.state.name}
+            onChange={this.handleInputChange}
+          ></Name>
         </label>
 
         <label>
@@ -44,13 +52,13 @@ class ContactForm extends Component {
             required
             // type="tel"
             // name="number"
-            // value={this.state.number}
-            // onChange={this.handleInputChange}
+            value={this.state.number}
+            onChange={this.handleInputChange}
           ></input>
         </label>
 
         <button type="submit">Add Contact</button>
-      </form>
+      </Form>
     );
   }
 }
