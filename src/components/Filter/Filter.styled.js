@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 
 export const Label = styled.label`
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 400;
 `;
 
 export const Input = styled.input`

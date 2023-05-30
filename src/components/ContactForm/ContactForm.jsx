@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Form, Name } from './ContactForm.styled';
+import {
+  Form,
+  NameInput,
+  NumberInput,
+  LabelName,
+  LabelNumber,
+  AddBtn,
+} from './ContactForm.styled';
 
 class ContactForm extends Component {
   state = {
@@ -8,15 +15,13 @@ class ContactForm extends Component {
     number: '',
   };
 
-  handleSubmit = (values, { resetForm }) => {
-    this.props.onSubmit(values);
-    resetForm();
-  };
+  handleSubmit = e => {
+    e.preventDefault();
+    const { name, number } = this.state;
 
-  // handleSubmit = ({ values }) => {
-  //   this.props.onSubmit(values);
-  //   this.setState(values);
-  // };
+    this.props.onAdd(name, number);
+    this.setState({ name: '', number: '' });
+  };
 
   handleInputChange = e => {
     const { name, value } = e.currentTarget;
@@ -26,9 +31,9 @@ class ContactForm extends Component {
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
-        <label>
+        <LabelName>
           Name
-          <Name
+          <NameInput
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+((['
@@ -39,25 +44,23 @@ class ContactForm extends Component {
             required
             value={this.state.name}
             onChange={this.handleInputChange}
-          ></Name>
-        </label>
+          ></NameInput>
+        </LabelName>
 
-        <label>
+        <LabelNumber>
           Number
-          <input
+          <NumberInput
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            // type="tel"
-            // name="number"
             value={this.state.number}
             onChange={this.handleInputChange}
-          ></input>
-        </label>
+          ></NumberInput>
+        </LabelNumber>
 
-        <button type="submit">Add Contact</button>
+        <AddBtn type="submit">Add Contact</AddBtn>
       </Form>
     );
   }
