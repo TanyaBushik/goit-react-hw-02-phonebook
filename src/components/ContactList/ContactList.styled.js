@@ -21,7 +21,7 @@ export const Button = styled.button`
   margin-left: 10px;
   background-color: white;
 
-  &: hover {
+  &:hover {
     color: white;
     background-color: blue;
   }

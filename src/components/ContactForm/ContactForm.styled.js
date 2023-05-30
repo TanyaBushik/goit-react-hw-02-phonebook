@@ -53,8 +53,9 @@ export const AddBtn = styled.button`
   padding: 5px 10px;
   font-size: 16px;
   font-weight: 400;
-  border: 1px solid
+  border: 1px solid;
   background-color: white;
+
   &:hover {
     color: white;
     background-color: blue;
